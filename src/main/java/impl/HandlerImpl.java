@@ -49,7 +49,14 @@ public class HandlerImpl implements Handler {
 
     @Override
     public PersonImpl getLowestAge(ArrayList<PersonImpl> persons) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PersonImpl p = new PersonImpl("", 200, "");
+        for (PersonImpl person : persons) {
+            if (person.getAge() < p.getAge()) {
+                p = person;
+            }
+            System.out.println(p.getName() + " is the youngest " + p.getName());
+        }
+        return p;
     }
 
     @Override

@@ -18,10 +18,12 @@ import org.junit.Test;
 public class handlerTest {
 
     HandlerImpl hi;
+    ArrayList<PersonImpl> testp;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         hi = new HandlerImpl();
+        testp = hi.readFile("persons.csv");
     }
 
     @After
@@ -40,6 +42,12 @@ public class handlerTest {
         for (PersonImpl p : sjoveTing) {
             System.out.println(p.getAge() + p.getGender() + p.getName());
         }
+    }
+
+    @Test
+    public void youngestTest() {
+
+        System.out.println(hi.getLowestAge(testp));
         
     }
 }
