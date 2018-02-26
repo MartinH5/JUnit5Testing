@@ -1,11 +1,12 @@
 package impl;
 
+import com.opencsv.CSVReader;
 import first_semester_eksamen.Handler;
 import java.io.IOException;
 import java.util.ArrayList;
-import first_semester_eksamen.Person;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class HandlerImpl implements Handler {
 
@@ -13,70 +14,71 @@ public class HandlerImpl implements Handler {
     String[] people;
 
     @Override
-    public String[] readFile(String FILENAME) throws IOException {
-       
-        BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ",";
-        String[] people = null;
-        try {
-            br = new BufferedReader(new FileReader(FILENAME));
-            while ((line = br.readLine()) != null) {
-                // use comma as separator
-                people = line.split(cvsSplitBy);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public ArrayList<PersonImpl> readFile(String filename) throws IOException {
+        ArrayList<PersonImpl> people = new ArrayList<PersonImpl>();
+        PersonImpl tmp;
+        int count = 0;
+        try (
+                Reader reader = Files.newBufferedReader(Paths.get(filename));
+                CSVReader csvReader = new CSVReader(reader);) {
+            // Reading Records One by One in a String array
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+                if (count != 0) {
+                    tmp = new PersonImpl("", 0, "");
+                    tmp.setName(nextRecord[0]);
+                    tmp.setAge(Integer.parseInt(nextRecord[1]));
+                    tmp.setGender(nextRecord[2]);
+                    people.add(tmp);
                 }
+                count++;
             }
         }
-
         return people;
     }
 
     @Override
-    public Person getHighestAge(ArrayList<Person> persons) {
+    public ArrayList<PersonImpl> getPeople() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Person getLowestAge(ArrayList<Person> persons) {
+    public PersonImpl getHighestAge(ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Person> getNameStartingWithLetter(String data) {
+    public PersonImpl getLowestAge(ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean isMaleOrFemale(String gender, ArrayList<Person> persons) {
+    public ArrayList<PersonImpl> getNameStartingWithLetter(String data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void sortByAge(ArrayList<Person> persons) {
+    public boolean isMaleOrFemale(String gender, ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void sortByName(ArrayList<Person> persons) {
+    public void sortByAge(ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Person> getByName(String name) {
+    public void sortByName(ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Person getYoungPeople(ArrayList<Person> persons) {
+    public ArrayList<PersonImpl> getByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersonImpl getYoungPeople(ArrayList<PersonImpl> persons) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

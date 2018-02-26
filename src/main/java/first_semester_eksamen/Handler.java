@@ -1,5 +1,6 @@
 package first_semester_eksamen;
 
+import impl.PersonImpl;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,21 +11,24 @@ public interface Handler {
      * @return The file content as a String
      * @throws IOException if file is missing or locked
      */
-    public String[] readFile(String filename) throws IOException;
+    public ArrayList<PersonImpl> readFile(String filename) throws IOException;
     
     /**
      * Converts file content to proper objects
      * @param persons The list of Samples based on file content
      * @return a list of Sample objects
      */
-    public Person getHighestAge(ArrayList<Person> persons);
+    
+    public ArrayList<PersonImpl> getPeople();
+    
+    public PersonImpl getHighestAge(ArrayList<PersonImpl> persons);
     
     /**
      * Identifies the Sample with the highest amplitude. Peaks are ignored.
      * @param persons The list of Samples based on file content
      * @return the identified Sample object
      */
-    public Person getLowestAge(ArrayList<Person> persons);
+    public PersonImpl getLowestAge(ArrayList<PersonImpl> persons);
     
     /**
      * Identifies the sample which have increased the most in amplitude 
@@ -35,7 +39,7 @@ public interface Handler {
      * 2 values are required
      * @return the identified Sample object
      */
-    public ArrayList<Person> getNameStartingWithLetter(String data);
+    public ArrayList<PersonImpl> getNameStartingWithLetter(String data);
     
     /**
      * Determines whether or not any sample surpasses the set limit. 
@@ -45,19 +49,19 @@ public interface Handler {
      * @return true if any amplitude or peak is greater than the limit,
      * false in any other case.
      */
-    public boolean isMaleOrFemale(String gender, ArrayList<Person> persons);
+    public boolean isMaleOrFemale(String gender, ArrayList<PersonImpl> persons);
     
     /**
      * Sorts samples by time
      * @param persons The list that will be sorted
      */
-    public void sortByAge(ArrayList<Person> persons);
+    public void sortByAge(ArrayList<PersonImpl> persons);
     
     /**
      * sorts samples by amplitude (ignore peak)
      * @param persons The list that will be sorted
      */
-    public void sortByName(ArrayList<Person> persons);
+    public void sortByName(ArrayList<PersonImpl> persons);
     
     /**
      * Retrieves a subset containing only the samples that have an amplitude 
@@ -65,7 +69,7 @@ public interface Handler {
      * @param name The maximum allowed amplitude
      * @return a new list containing the subset
      */
-    public ArrayList<Person> getByName(String name);
+    public ArrayList<PersonImpl> getByName(String name);
     
     /**
      * Retrieves a subset containing only the samples that have a timestamp 
@@ -73,5 +77,5 @@ public interface Handler {
      * @param persons The list from which to get the subset
      * @return a new list containing the subset
      */
-    public Person getYoungPeople(ArrayList<Person> persons);    
+    public PersonImpl getYoungPeople(ArrayList<PersonImpl> persons);    
 }

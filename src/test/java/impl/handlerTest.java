@@ -6,10 +6,10 @@ package impl;
  * and open the template in the editor.
  */
 import java.io.IOException;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -34,13 +34,12 @@ public class handlerTest {
     @Test
     public void hello() throws IOException {
 
-        String[] sjoveTing;
+        ArrayList<PersonImpl> sjoveTing;
         sjoveTing = hi.readFile("persons.csv");
-        System.out.println(System.getProperty("user.dir"));
         System.out.println(sjoveTing);
-        for (String str : sjoveTing) {
-            System.out.println(str);
+        for (PersonImpl p : sjoveTing) {
+            System.out.println(p.getAge() + p.getGender() + p.getName());
         }
-
+        
     }
 }

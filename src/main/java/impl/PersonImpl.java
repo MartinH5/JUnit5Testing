@@ -1,12 +1,10 @@
 package impl;
 
-import first_semester_eksamen.Person;
+public class PersonImpl {
 
-public class PersonImpl implements Person {
-
-    private final String name;
-    private final int age;
-    private final String gender;
+    private String name;
+    private int age;
+    private String gender;
 
     public PersonImpl(String name, int age, String gender) {
         this.name = name;
@@ -14,19 +12,29 @@ public class PersonImpl implements Person {
         this.gender = gender;
     }
 
-    @Override
+
     public int getAge() {
         return this.age;
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
 
-    @Override
     public String getGender() {
         return gender;
     }
-    
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+
+    }
 }
