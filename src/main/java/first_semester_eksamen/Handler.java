@@ -1,6 +1,5 @@
 package first_semester_eksamen;
 
-import impl.Time;
 import java.io.IOException;
 import java.util.ArrayList;
 
