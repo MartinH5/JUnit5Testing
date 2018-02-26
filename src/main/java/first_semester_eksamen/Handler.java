@@ -77,5 +77,9 @@ public interface Handler {
      * @param persons The list from which to get the subset
      * @return a new list containing the subset
      */
-    public PersonImpl getYoungPeople(ArrayList<PersonImpl> persons);    
+    public PersonImpl getYoungPeople(ArrayList<PersonImpl> persons); 
+    
+    public boolean insertPerson(PersonImpl p);
+    
+    public boolean deletePersonByName(String name);
 }
