@@ -2,15 +2,18 @@ package impl;
 
 import com.opencsv.CSVReader;
 import first_semester_eksamen.Handler;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Iterator;
 
 public class HandlerImpl implements Handler {
 
-    public static final String FILENAME = "Samples.csv";
+    public static final String FILENAME = "persons.csv";
     String[] people;
 
     @Override
@@ -44,7 +47,13 @@ public class HandlerImpl implements Handler {
 
     @Override
     public PersonImpl getHighestAge(ArrayList<PersonImpl> persons) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PersonImpl p = new PersonImpl("", 0, "");
+        for (PersonImpl person : persons) {
+            if (person.getAge() > p.getAge()) {
+                p = person;
+            }
+        }
+        return p;
     }
 
     @Override
@@ -54,19 +63,31 @@ public class HandlerImpl implements Handler {
             if (person.getAge() < p.getAge()) {
                 p = person;
             }
-            System.out.println(p.getName() + " is the youngest " + p.getName());
         }
         return p;
     }
 
     @Override
-    public ArrayList<PersonImpl> getNameStartingWithLetter(String data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<PersonImpl> getNameStartingWithLetter(ArrayList<PersonImpl> persons, String letter) {
+
+        ArrayList<PersonImpl> withLetter = new ArrayList<>();
+
+        for (PersonImpl p : persons) {
+            if (p.getName().substring(0, 1).equals(letter)) {
+                withLetter.add(p);
+            }
+
+        }
+        return withLetter;
+
     }
 
     @Override
-    public boolean isMaleOrFemale(String gender, ArrayList<PersonImpl> persons) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isMale(PersonImpl person) {
+        if (person.getGender().equals("male")) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -80,8 +101,17 @@ public class HandlerImpl implements Handler {
     }
 
     @Override
-    public ArrayList<PersonImpl> getByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<PersonImpl> getByName(String name, ArrayList<PersonImpl> people) {
+        ArrayList<PersonImpl> peopleWithName = new ArrayList<>();
+
+        for (PersonImpl p : people) {
+            if (p.getName().equals(name)) {
+                peopleWithName.add(p);
+            }
+
+        }
+        return peopleWithName;
+
     }
 
     @Override
@@ -91,12 +121,39 @@ public class HandlerImpl implements Handler {
 
     @Override
     public boolean insertPerson(PersonImpl p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(FILENAME, true))) { //clears file every time
+            //clears file every time
+            output.append(p.getName() + "," + p.getAge() + "," + p.getGender());
+            output.close();
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
     }
 
     @Override
     public boolean deletePersonByName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//        ArrayList<PersonImpl> people;
+//        ArrayList<PersonImpl> toRemove = new ArrayList<>();
+//        try (BufferedWriter output = new BufferedWriter(new FileWriter(FILENAME))) {
+//            people = readFile(FILENAME);
+//            System.out.println(people.size() + " min størrelse");
+//            for (PersonImpl p : people) {
+//                if (p.getName().equals(name)) {
+//                    toRemove.add(p);
+//                }
+//            }
+//            people.removeAll(toRemove);
+//            output.write("Name,Age,Gender");
+//            output.close();
+//            for (PersonImpl p : people) {
+//                insertPerson(p);
+//            }
+//            return true;
+//        } catch (IOException ex) {
+//            return false;
+//        }
+//    }
 
-}
+    }

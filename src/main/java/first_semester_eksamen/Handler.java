@@ -39,7 +39,7 @@ public interface Handler {
      * 2 values are required
      * @return the identified Sample object
      */
-    public ArrayList<PersonImpl> getNameStartingWithLetter(String data);
+    public ArrayList<PersonImpl> getNameStartingWithLetter(ArrayList<PersonImpl> p, String letter);
     
     /**
      * Determines whether or not any sample surpasses the set limit. 
@@ -49,7 +49,7 @@ public interface Handler {
      * @return true if any amplitude or peak is greater than the limit,
      * false in any other case.
      */
-    public boolean isMaleOrFemale(String gender, ArrayList<PersonImpl> persons);
+    public boolean isMale (PersonImpl person);
     
     /**
      * Sorts samples by time
@@ -69,7 +69,7 @@ public interface Handler {
      * @param name The maximum allowed amplitude
      * @return a new list containing the subset
      */
-    public ArrayList<PersonImpl> getByName(String name);
+    public ArrayList<PersonImpl> getByName(String name, ArrayList<PersonImpl> persons);
     
     /**
      * Retrieves a subset containing only the samples that have a timestamp 
