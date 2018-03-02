@@ -7,7 +7,6 @@ package impl;
  */
 import java.io.IOException;
 import java.util.ArrayList;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,68 +25,71 @@ public class handlerTest {
         testp = hi.readFile("persons.csv");
     }
 
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
-    public void hello() throws IOException {
-
-        ArrayList<PersonImpl> sjoveTing;
-        sjoveTing = hi.readFile("persons.csv");
-        System.out.println("Vi har " + sjoveTing.size() + " personer");
+    public void readFileTest() throws IOException {
+        System.out.println("\n" + "Read File test:");
+        ArrayList<PersonImpl> personArr;
+        personArr = hi.readFile("persons.csv");
+        System.out.println("We have " + personArr.size() + " persons");
     }
 
     @Test
     public void youngestTest() {
+        System.out.println("\n" + "Youngest person:");
         System.out.println(hi.getLowestAge(testp).getName() + " is the youngest");
     }
-    
+
     @Test
     public void oldestTest() {
+        System.out.println("\n" + "Oldest person:");
         System.out.println(hi.getHighestAge(testp).getName() + " is the oldest");
     }
-    
+
+//    @Test
+//    public void insertTest(){
+//        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
+//        hi.insertPerson(testPerson);
+//        
+//    }
     @Test
-    public void insertTest(){
-        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
-        hi.insertPerson(testPerson);
-        
-    }
-    
-    @Test
-    public void letterTest(){
-        ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp , "U");
-        System.out.println("letter with name consists of: " + testData.size());
+    public void letterTest() {
+        ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp, "U");
+        System.out.println("\n" + "letter with U in their name consists of: " + testData.size() + " persons");
+        System.out.println("and they are:");
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
         }
     }
-    
+
     @Test
-    public void nameTest(){
+    public void nameTest() {
         ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);
-        System.out.println("We have : " + testData.size() + " with the same name");
+        System.out.println("\n" + "We have : " + testData.size() + " with the same name");
+        System.out.println("Who are/is:");
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
         }
     }
-    
-    
+
     @Test
-    public void maleTest(){
+    public void maleTest() {
+        System.out.println("\n" + "Gender test:");
         PersonImpl testPerson = new PersonImpl("Hans", 15, "male");
-        System.out.println("Is it true, that Hans is a male? " + hi.isMale(testPerson));
+        System.out.println("Is it true, that Hans is a male? " + "\nAnswer: " + hi.isMale(testPerson));
     }
-    
-    
-    
+
     @Test
-    public void deletionTest(){
-    //    hi.deletePersonByName("Ulla");
-    
+    public void sortByAgeTest() {
+        System.out.println("\nSorting the CSV by age:");
+        ArrayList<PersonImpl> SortAge = hi.sortByAge(testp);
+        for (PersonImpl line : SortAge) {
+            System.out.println(line);
+        }
+    }
+
+    @Test
+    public void deletionTest() {
+        //    hi.deletePersonByName("Ulla");
+
     }
 }

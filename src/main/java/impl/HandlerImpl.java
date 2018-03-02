@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class HandlerImpl implements Handler {
@@ -33,7 +35,7 @@ public class HandlerImpl implements Handler {
                     tmp.setAge(Integer.parseInt(nextRecord[1]));
                     tmp.setGender(nextRecord[2]);
                     people.add(tmp);
-                }
+                } 
                 count++;
             }
         }
@@ -91,8 +93,23 @@ public class HandlerImpl implements Handler {
     }
 
     @Override
-    public void sortByAge(ArrayList<PersonImpl> persons) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<PersonImpl> sortByAge(ArrayList<PersonImpl> persons) {
+        ArrayList<PersonImpl> pers = new ArrayList<>();
+        persons.remove(0);
+        for (PersonImpl person : persons) {
+            String personName = person.getName();
+            int personAge = person.getAge();
+            String gender = person.getGender();
+            pers.add(new PersonImpl(personName, personAge, gender));
+        }
+
+        Collections.sort(pers, new Comparator<PersonImpl>() {
+            @Override
+            public int compare(PersonImpl p1, PersonImpl p2) {
+                return p1.compareTo(p2);
+            }
+        });
+        return pers;
     }
 
     @Override
@@ -157,3 +174,4 @@ public class HandlerImpl implements Handler {
 //    }
 
     }
+}

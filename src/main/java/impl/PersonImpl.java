@@ -1,6 +1,6 @@
 package impl;
 
-public class PersonImpl {
+public class PersonImpl implements Comparable<PersonImpl>{
 
     private String name;
     private int age;
@@ -36,5 +36,19 @@ public class PersonImpl {
     public void setAge(int age) {
         this.age = age;
 
+    }
+
+    @Override
+    public int compareTo(PersonImpl p) {
+        if (this.age == p.age){
+            return this.name.compareTo(p.name);
+        } else {
+            return (p.age - this.age) > 0 ? 1 : -1;
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return "Persons: " + "Name: " + name + " Age: " + age + " Gender: " + gender;
     }
 }

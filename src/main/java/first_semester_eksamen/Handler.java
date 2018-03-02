@@ -55,7 +55,7 @@ public interface Handler {
      * Sorts samples by time
      * @param persons The list that will be sorted
      */
-    public void sortByAge(ArrayList<PersonImpl> persons);
+    public ArrayList<PersonImpl> sortByAge(ArrayList<PersonImpl> persons);
     
     /**
      * sorts samples by amplitude (ignore peak)
