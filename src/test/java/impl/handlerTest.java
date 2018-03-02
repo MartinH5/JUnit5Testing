@@ -86,6 +86,15 @@ public class handlerTest {
             System.out.println(line);
         }
     }
+    
+    @Test
+    public void sortByNameTest() {
+        System.out.println("\n" + "Sorting the CSV by name:");
+        ArrayList<PersonImpl> SortName = hi.sortByName(testp);
+        for (PersonImpl line : SortName) {
+            System.out.println(line);
+        }
+    }
 
     @Test
     public void deletionTest() {

@@ -61,7 +61,7 @@ public interface Handler {
      * sorts samples by amplitude (ignore peak)
      * @param persons The list that will be sorted
      */
-    public void sortByName(ArrayList<PersonImpl> persons);
+    public ArrayList<PersonImpl> sortByName(ArrayList<PersonImpl> persons);
     
     /**
      * Retrieves a subset containing only the samples that have an amplitude 

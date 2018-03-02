@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HandlerImpl implements Handler {
 
@@ -92,6 +95,7 @@ public class HandlerImpl implements Handler {
         return false;
     }
 
+    // one way to sort in a csv or other file.
     @Override
     public ArrayList<PersonImpl> sortByAge(ArrayList<PersonImpl> persons) {
         ArrayList<PersonImpl> pers = new ArrayList<>();
@@ -112,9 +116,16 @@ public class HandlerImpl implements Handler {
         return pers;
     }
 
+    // another and more easy way to sort in a csv or other file
     @Override
-    public void sortByName(ArrayList<PersonImpl> persons) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<PersonImpl> sortByName(ArrayList<PersonImpl> persons) {
+        try {
+            persons = readFile(FILENAME);
+            persons.sort(Comparator.comparing(PersonImpl::getName));
+        } catch (IOException ex) {
+            Logger.getLogger(HandlerImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return persons;
     }
 
     @Override
