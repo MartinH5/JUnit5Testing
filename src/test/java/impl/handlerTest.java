@@ -43,8 +43,6 @@ public class handlerTest {
         PersonImpl actualYoungest = hi.getLowestAge(testp);     
         System.out.println(actualYoungest.getName() + " is the youngest\n");
         assertEquals(actualYoungest.getAge(),youngest);
-        System.out.println("\n" + "Youngest person:");
-        System.out.println(hi.getLowestAge(testp).getName() + " is the youngest");
     }
     
     // Here we check if each person's name starts with U
@@ -55,6 +53,9 @@ public class handlerTest {
         System.out.println("and they are:");
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
+            if(!personImpl.getName().substring(0, 1).equals("U")){
+                fail("Found a letter that doesn't fit");
+            }
         }
         
     }
@@ -63,8 +64,9 @@ public class handlerTest {
     public void getByNameTest() {
         ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);
         System.out.println("\n" + "We have : " + testData.size() + " with the same name");
-        System.out.println("Who are/is:");
+        System.out.println("Who are:");
         for (PersonImpl p : testData) {
+            System.out.println(p.getName() + " " + p.getAge());
             if(!p.getName().equals("Ulla")){
                 fail("Found a name that doesn't fit");
             }
