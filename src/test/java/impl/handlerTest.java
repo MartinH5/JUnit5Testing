@@ -8,6 +8,7 @@ package impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,21 +35,28 @@ public class handlerTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void hello() throws IOException {
+    public void readTest() throws IOException {
 
-        ArrayList<PersonImpl> sjoveTing;
-        sjoveTing = hi.readFile("persons.csv");
-        System.out.println("Vi har " + sjoveTing.size() + " personer");
+        ArrayList<PersonImpl> people;
+        people = hi.readFile("persons.csv");
+        System.out.println("After a read we have " + people.size() + " people");
+        assert(people.size() > 1);
     }
 
     @Test
     public void youngestTest() {
-        System.out.println(hi.getLowestAge(testp).getName() + " is the youngest");
+        int youngest = 10;
+        PersonImpl actualYoungest = hi.getLowestAge(testp);     
+        System.out.println(actualYoungest.getName() + " is the yoiungest\n");
+        assertEquals(actualYoungest.getAge(),youngest);
     }
     
     @Test
     public void oldestTest() {
-        System.out.println(hi.getHighestAge(testp).getName() + " is the oldest");
+        int oldest = 160;
+        PersonImpl actualOldest = hi.getHighestAge(testp);     
+        System.out.println(actualOldest.getName() + " is the oldest\n");
+        assertEquals(actualOldest.getAge(),oldest);
     }
     
     @Test
@@ -58,6 +66,8 @@ public class handlerTest {
         
     }
     
+    
+    // Here we check if each person's name starts with U
     @Test
     public void letterTest(){
         ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp , "U");
@@ -65,8 +75,9 @@ public class handlerTest {
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
         }
+        
     }
-    
+    //Here We check if we got a person by the right name. 
     @Test
     public void nameTest(){
         ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);

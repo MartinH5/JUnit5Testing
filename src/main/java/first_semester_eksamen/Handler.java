@@ -55,13 +55,13 @@ public interface Handler {
      * Sorts samples by time
      * @param persons The list that will be sorted
      */
-    public void sortByAge(ArrayList<PersonImpl> persons);
+    public ArrayList<PersonImpl> sortByAge(ArrayList<PersonImpl> persons);
     
     /**
      * sorts samples by amplitude (ignore peak)
      * @param persons The list that will be sorted
      */
-    public void sortByName(ArrayList<PersonImpl> persons);
+    public ArrayList<PersonImpl> sortByName(ArrayList<PersonImpl> persons);
     
     /**
      * Retrieves a subset containing only the samples that have an amplitude 
@@ -77,7 +77,7 @@ public interface Handler {
      * @param persons The list from which to get the subset
      * @return a new list containing the subset
      */
-    public PersonImpl getYoungPeople(ArrayList<PersonImpl> persons); 
+    public ArrayList<PersonImpl> getPeopleYoungerThan(ArrayList<PersonImpl> persons, int age); 
     
     public boolean insertPerson(PersonImpl p);
     
