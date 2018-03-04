@@ -101,9 +101,21 @@ public class handlerTest {
     public void sortByNameTest() {
         System.out.println("\n" + "Sorting the CSV by name:");
         ArrayList<PersonImpl> SortName = hi.sortByName(testp);
-        String tempName = "a";
+        String tempName = "A";
         for (PersonImpl line : SortName) {
-            System.out.println(line);
+//            System.out.println(line);
+            System.out.println("Hejsa med digsa");
+            if (tempName.charAt(0) == line.getName().charAt(0)) {
+                if (!sameLetterHelper(tempName, line.getName())) {
+                    fail("Order Broken");
+                }
+            }
+            if (line.getName().charAt(0) < tempName.charAt(0)) {
+                System.out.println("Current name is: " + line.getName().charAt(0) + "  And Temp name is: " + tempName.charAt(0));
+                fail("Order Broken");
+            } else {
+                tempName = line.getName();
+            }
         }
     }
 
@@ -130,4 +142,41 @@ public class handlerTest {
     public void DeletePersonByCredentailsTest() {
         hi.deletePersonByCredentials("Test,15,Test");
     }
+
+    private boolean sameLetterHelper(String a, String b) {
+
+        int lengthA = a.length();
+        int lengthB = a.length();
+        int index;
+        if (lengthA >= lengthB) {
+            index = lengthA;
+        } else {
+            index = lengthB;
+        }
+
+        for (int i = 1; index > i; i++) {
+            if (a.charAt(i) > b.charAt(i)) {
+                return false;
+            }
+            return true;
+        }
+//
+//        if (a.charAt(1) > b.charAt(1)) {
+//            return false;
+//        }
+//        if (a.charAt(1) > b.charAt(1)) {
+//            return false;
+//        }
+//        if (a.charAt(2) > b.charAt(2)) {
+//            return false;
+//        }
+//        if (a.charAt(3) > b.charAt(3)) {
+//            return false;
+//        }
+//        if (a.charAt(4) > b.charAt(4)) {
+//            return false;
+//        }
+        return true;
+    }
+
 }
