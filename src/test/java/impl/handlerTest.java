@@ -2,8 +2,7 @@ package impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -131,16 +130,28 @@ public class handlerTest {
         }
     }
 
-//    @Test
-//    public void insertPersonTest(){
-//        System.out.println("\n" + "Insert person test:");
-//        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
-//        hi.insertPerson(testPerson);
-//        System.out.println(testPerson + " has been inserted");
-//    }
     @Test
-    public void DeletePersonByCredentailsTest() {
+    public void insertPersonTest() throws IOException{
+        System.out.println("\n" + "Insert person test:");
+        PersonImpl testPerson = new PersonImpl("Test", 15, "Test");
+        ArrayList<PersonImpl> people = hi.readFile("persons.csv");
+        hi.insertPerson(testPerson);
+        System.out.println(testPerson + " has been inserted");
+        ArrayList<PersonImpl> peopleIns = hi.readFile("persons.csv");
+        assertTrue(peopleIns.size() > people.size());
+    }
+    
+    @Test
+    public void DeletePersonByCredentailsTest() throws IOException {
+        ArrayList<PersonImpl> people = hi.readFile("persons.csv");
+        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
+        hi.insertPerson(testPerson);
+        ArrayList<PersonImpl> peopleIns = hi.readFile("persons.csv");
+        assertTrue(peopleIns.size() > people.size());
+        
         hi.deletePersonByCredentials("Test,15,Test");
+        ArrayList<PersonImpl> peopleDel = hi.readFile("persons.csv");
+        assertTrue(peopleDel.size() == people.size());
     }
 
     private boolean sameLetterHelper(String a, String b) {
