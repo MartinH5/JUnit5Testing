@@ -95,15 +95,20 @@ public class handlerTest {
     
     @Test
     public void peopleYoungerThanTest() {
-        
+        System.out.println("\n" + "Get People younger than Test:");
+        ArrayList<PersonImpl> youngThan = hi.getPeopleYoungerThan(testp, 43);
+        for (PersonImpl line : youngThan){
+            System.out.println(line);
+        }
     }
 
-    @Test
-    public void insertPersonTest(){
-        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
-        hi.insertPerson(testPerson);
-        
-    }
+//    @Test
+//    public void insertPersonTest(){
+//        System.out.println("\n" + "Insert person test:");
+//        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
+//        hi.insertPerson(testPerson);
+//        System.out.println(testPerson + " has been inserted");
+//    }
     
     @Test
     public void DeletePersonByCredentailsTest() {

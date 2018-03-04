@@ -26,5 +26,5 @@ public interface Handler {
     
     public boolean insertPerson(PersonImpl p);
     
-    public void deletePersonByCredentials(String name);
+    public boolean deletePersonByCredentials(String name);
 }

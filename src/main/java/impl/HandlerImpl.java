@@ -165,13 +165,13 @@ public class HandlerImpl implements Handler {
     }
 
     @Override
-    public void deletePersonByCredentials(String name) {
+    public boolean deletePersonByCredentials(String name) {
         try {
             String file = "persons.csv";
             File inFile = new File(file);
             if (!inFile.isFile()) {
                 System.out.println("Parameter is not an existing file");
-                return;
+                return true;
             }
             //Construct the new file that will later be renamed to the original filename. 
             File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
@@ -192,17 +192,19 @@ public class HandlerImpl implements Handler {
             //Delete the original file
             if (!inFile.delete()) {
                 System.out.println("Could not delete file");
-                return;
+                return true;
             }
             //Rename the new file to the filename the original file had.
             if (!tempFile.renameTo(inFile)) {
                 System.out.println("Could not rename file");
             }
-
+            return true;
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
+            return false;
         } catch (IOException eex) {
             System.out.println(eex);
+            return false;
         }
     }
 }
