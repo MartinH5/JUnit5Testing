@@ -36,7 +36,7 @@ public class HandlerImpl implements Handler {
                     tmp.setAge(Integer.parseInt(nextRecord[1]));
                     tmp.setGender(nextRecord[2]);
                     people.add(tmp);
-                }
+                } 
                 count++;
             }
         }
@@ -93,6 +93,7 @@ public class HandlerImpl implements Handler {
         return false;
     }
 
+    // one way to sort in a csv or other file.
     @Override
     public ArrayList<PersonImpl> sortByAge(ArrayList<PersonImpl> persons) {
         ArrayList<PersonImpl> pers = new ArrayList<>();
@@ -188,3 +189,4 @@ public class HandlerImpl implements Handler {
 //    }
 
     }
+}

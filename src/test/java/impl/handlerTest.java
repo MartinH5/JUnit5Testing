@@ -27,20 +27,19 @@ public class handlerTest {
         testp = hi.readFile("persons.csv");
     }
 
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void readTest() throws IOException {
-
         ArrayList<PersonImpl> people;
         people = hi.readFile("persons.csv");
         System.out.println("After a read we have " + people.size() + " people");
         assert(people.size() > 1);
+    }
+    @Test
+    public void readFileTest() throws IOException {
+        System.out.println("\n" + "Read File test:");
+        ArrayList<PersonImpl> personArr;
+        personArr = hi.readFile("persons.csv");
+        System.out.println("We have " + personArr.size() + " persons");
     }
 
     @Test
@@ -49,8 +48,10 @@ public class handlerTest {
         PersonImpl actualYoungest = hi.getLowestAge(testp);     
         System.out.println(actualYoungest.getName() + " is the yoiungest\n");
         assertEquals(actualYoungest.getAge(),youngest);
+        System.out.println("\n" + "Youngest person:");
+        System.out.println(hi.getLowestAge(testp).getName() + " is the youngest");
     }
-    
+
     @Test
     public void oldestTest() {
         int oldest = 160;
@@ -64,14 +65,24 @@ public class handlerTest {
         PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
         hi.insertPerson(testPerson);
         
+    
+    
+    
     }
-    
-    
+
+//    @Test
+//    public void insertTest(){
+//        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
+//        hi.insertPerson(testPerson);
+//        
+//    }
     // Here we check if each person's name starts with U
+
     @Test
-    public void letterTest(){
-        ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp , "U");
-        System.out.println("letter with name consists of: " + testData.size());
+    public void letterTest() {
+        ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp, "U");
+        System.out.println("\n" + "letter with U in their name consists of: " + testData.size() + " persons");
+        System.out.println("and they are:");
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
         }
@@ -79,26 +90,43 @@ public class handlerTest {
     }
     //Here We check if we got a person by the right name. 
     @Test
-    public void nameTest(){
+    public void nameTest() {
         ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);
-        System.out.println("We have : " + testData.size() + " with the same name");
+        System.out.println("\n" + "We have : " + testData.size() + " with the same name");
+        System.out.println("Who are/is:");
         for (PersonImpl personImpl : testData) {
             System.out.println(personImpl.getName());
         }
     }
-    
-    
+
     @Test
-    public void maleTest(){
+    public void maleTest() {
+        System.out.println("\n" + "Gender test:");
         PersonImpl testPerson = new PersonImpl("Hans", 15, "male");
-        System.out.println("Is it true, that Hans is a male? " + hi.isMale(testPerson));
+        System.out.println("Is it true, that Hans is a male? " + "\nAnswer: " + hi.isMale(testPerson));
+    }
+
+    @Test
+    public void sortByAgeTest() {
+        System.out.println("\nSorting the CSV by age:");
+        ArrayList<PersonImpl> SortAge = hi.sortByAge(testp);
+        for (PersonImpl line : SortAge) {
+            System.out.println(line);
+        }
     }
     
-    
-    
     @Test
-    public void deletionTest(){
-    //    hi.deletePersonByName("Ulla");
-    
+    public void sortByNameTest() {
+        System.out.println("\n" + "Sorting the CSV by name:");
+        ArrayList<PersonImpl> SortName = hi.sortByName(testp);
+        for (PersonImpl line : SortName) {
+            System.out.println(line);
+        }
+    }
+
+    @Test
+    public void deletionTest() {
+        //    hi.deletePersonByName("Ulla");
+
     }
 }
