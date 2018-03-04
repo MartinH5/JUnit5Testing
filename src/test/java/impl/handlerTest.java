@@ -3,6 +3,7 @@ package impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,8 +64,10 @@ public class handlerTest {
         ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);
         System.out.println("\n" + "We have : " + testData.size() + " with the same name");
         System.out.println("Who are/is:");
-        for (PersonImpl personImpl : testData) {
-            System.out.println(personImpl.getName());
+        for (PersonImpl p : testData) {
+            if(!p.getName().equals("Ulla")){
+                fail("Found a name that doesn't fit");
+            }
         }
     }
 
@@ -72,6 +75,7 @@ public class handlerTest {
     public void isMaleTest() {
         System.out.println("\n" + "Gender test:");
         PersonImpl testPerson = new PersonImpl("Hans", 15, "male");
+        assertEquals("male",testPerson.getGender());
         System.out.println("Is it true, that Hans is a male? " + "\nAnswer: " + hi.isMale(testPerson));
     }
 
@@ -96,8 +100,9 @@ public class handlerTest {
     @Test
     public void peopleYoungerThanTest() {
         System.out.println("\n" + "Get People younger than Test:");
-        ArrayList<PersonImpl> youngThan = hi.getPeopleYoungerThan(testp, 43);
+        ArrayList<PersonImpl> youngThan = hi.getPeopleYoungerThan(testp, 20);
         for (PersonImpl line : youngThan){
+            if(line.getAge() > 19) fail("Found someone who was too old");
             System.out.println(line);
         }
     }
