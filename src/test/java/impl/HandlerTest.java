@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class handlerTest {
+public class HandlerTest {
 
     HandlerImpl hi;
     ArrayList<PersonImpl> testp;
@@ -85,15 +85,17 @@ public class handlerTest {
     public void sortByAgeTest() {
         System.out.println("\nSorting the CSV by age:");
         ArrayList<PersonImpl> SortAge = hi.sortByAge(testp);
+        boolean result = true;
         int tempAge = 9999;
         for (PersonImpl line : SortAge) {
             //System.out.println(line);
             if (line.getAge() > tempAge) {
-                fail("Not ordered");
+                result = false;
             } else {
                 tempAge = line.getAge();
             }
         }
+        assertEquals(true, result);
     }
 
     @Test
@@ -101,21 +103,23 @@ public class handlerTest {
         System.out.println("\n" + "Sorting the CSV by name:");
         ArrayList<PersonImpl> SortName = hi.sortByName(testp);
         String tempName = "A";
+        boolean result = true;
         for (PersonImpl line : SortName) {
 //            System.out.println(line);
             System.out.println("Hejsa med digsa");
             if (tempName.charAt(0) == line.getName().charAt(0)) {
                 if (!sameLetterHelper(tempName, line.getName())) {
-                    fail("Order Broken");
+                    result = false;
                 }
             }
             if (line.getName().charAt(0) < tempName.charAt(0)) {
                 System.out.println("Current name is: " + line.getName().charAt(0) + "  And Temp name is: " + tempName.charAt(0));
-                fail("Order Broken");
+                result = false;
             } else {
                 tempName = line.getName();
             }
         }
+        assertEquals(true,result);
     }
 
     @Test
@@ -171,22 +175,6 @@ public class handlerTest {
             }
             return true;
         }
-//
-//        if (a.charAt(1) > b.charAt(1)) {
-//            return false;
-//        }
-//        if (a.charAt(1) > b.charAt(1)) {
-//            return false;
-//        }
-//        if (a.charAt(2) > b.charAt(2)) {
-//            return false;
-//        }
-//        if (a.charAt(3) > b.charAt(3)) {
-//            return false;
-//        }
-//        if (a.charAt(4) > b.charAt(4)) {
-//            return false;
-//        }
         return true;
     }
 
