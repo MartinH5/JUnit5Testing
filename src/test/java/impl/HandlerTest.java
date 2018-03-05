@@ -106,7 +106,6 @@ public class HandlerTest {
         boolean result = true;
         for (PersonImpl line : SortName) {
 //            System.out.println(line);
-            System.out.println("Hejsa med digsa");
             if (tempName.charAt(0) == line.getName().charAt(0)) {
                 if (!sameLetterHelper(tempName, line.getName())) {
                     result = false;
@@ -137,7 +136,7 @@ public class HandlerTest {
     @Test
     public void insertPersonTest() throws IOException{
         System.out.println("\n" + "Insert person test:");
-        PersonImpl testPerson = new PersonImpl("Test", 15, "Test");
+        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
         ArrayList<PersonImpl> people = hi.readFile("persons.csv");
         hi.insertPerson(testPerson);
         System.out.println(testPerson + " has been inserted");
@@ -146,16 +145,19 @@ public class HandlerTest {
     }
     
     @Test
-    public void DeletePersonByCredentailsTest() throws IOException {
+    public void deletePersonByCredentailsTest() throws IOException {
         ArrayList<PersonImpl> people = hi.readFile("persons.csv");
         PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
         hi.insertPerson(testPerson);
         ArrayList<PersonImpl> peopleIns = hi.readFile("persons.csv");
         assertTrue(peopleIns.size() > people.size());
         
-        hi.deletePersonByCredentials("Test,15,Test");
+        hi.deletePersonByCredentials("Test");
         ArrayList<PersonImpl> peopleDel = hi.readFile("persons.csv");
-        assertTrue(peopleDel.size() == people.size());
+        
+        System.out.println("//////////People ins: " + peopleIns.size() + " og  people: " + people.size());
+        assertTrue(peopleDel.size()-1 == people.size());
+        
     }
 
     private boolean sameLetterHelper(String a, String b) {
