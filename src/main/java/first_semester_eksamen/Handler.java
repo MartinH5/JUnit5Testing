@@ -14,7 +14,7 @@ public interface Handler {
     
     public ArrayList<PersonImpl> getNameStartingWithLetter(ArrayList<PersonImpl> p, String letter);
     
-    public ArrayList<PersonImpl> getByName(String name, ArrayList<PersonImpl> persons);
+    public ArrayList<PersonImpl> getByName(ArrayList<PersonImpl> persons, String name);
     
     public boolean isMale (PersonImpl person);
     
@@ -24,7 +24,9 @@ public interface Handler {
     
     public ArrayList<PersonImpl> getPeopleYoungerThan(ArrayList<PersonImpl> persons, int age); 
     
-    public boolean insertPerson(PersonImpl p);
+    public void insertPerson(ArrayList<PersonImpl> persons ,PersonImpl p);
     
-    public boolean deletePersonByCredentials(String name);
+    public void deletePersonByName(ArrayList<PersonImpl> persons, String name);
+    
+    public boolean safeState(ArrayList<PersonImpl> persons, String fileName);
 }

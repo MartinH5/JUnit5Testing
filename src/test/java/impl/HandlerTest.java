@@ -133,17 +133,17 @@ public class HandlerTest {
         }
     }
 
-    @Test
-    public void insertPersonTest() throws IOException{
-        System.out.println("\n" + "Insert person test:");
-        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
-        ArrayList<PersonImpl> people = hi.readFile("persons.csv");
-        hi.insertPerson(testPerson);
-        System.out.println(testPerson + " has been inserted");
-        ArrayList<PersonImpl> peopleIns = hi.readFile("persons.csv");
-        assertTrue(peopleIns.size() > people.size());
-    }
-    
+//    @Test
+//    public void insertPersonTest() throws IOException{
+//        System.out.println("\n" + "Insert person test:");
+//        PersonImpl testPerson = new PersonImpl("\nTest", 15, "Test");
+//        ArrayList<PersonImpl> people = hi.readFile("persons.csv");
+//        hi.insertPerson(testPerson);
+//        System.out.println(testPerson + " has been inserted");
+//        ArrayList<PersonImpl> peopleIns = hi.readFile("persons.csv");
+//        assertTrue(peopleIns.size() > people.size());
+//    }
+//    
 //    @Test
 //    public void deletePersonByCredentailsTest() throws IOException {
 //        ArrayList<PersonImpl> people = hi.readFile("persons.csv");
