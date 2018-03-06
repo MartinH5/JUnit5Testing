@@ -62,7 +62,7 @@ public class HandlerTest {
     //Here We check if we got a person by the right name. 
     @Test
     public void getByNameTest() {
-        ArrayList<PersonImpl> testData = hi.getByName("Ulla", testp);
+        ArrayList<PersonImpl> testData = hi.getByName(testp, "Ulla");
         System.out.println("\n" + "We have : " + testData.size() + " with the same name");
         System.out.println("Who are:");
         for (PersonImpl p : testData) {
