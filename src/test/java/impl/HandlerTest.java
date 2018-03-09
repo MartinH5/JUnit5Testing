@@ -2,6 +2,8 @@ package impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +12,13 @@ public class HandlerTest {
 
     HandlerImpl hi;
     ArrayList<PersonImpl> testp;
+    Map<String, String> testData;
 
     @Before
     public void setUp() throws IOException {
         hi = new HandlerImpl();
         testp = hi.readFile("persons.csv");
+        testData = generateTestData();
     }
 
     @Test
@@ -23,13 +27,13 @@ public class HandlerTest {
         ArrayList<PersonImpl> people;
         people = hi.readFile("persons.csv");
         System.out.println("After a read we have " + people.size() + " people");
-        assertTrue(people.size() > 1);
+        assertTrue(people.size() > Integer.parseInt(testData.get("Not Empty")));
     }
 
     @Test
     public void highestAgeTest() {
         System.out.println("\n" + "Oldest test:");
-        int oldest = 160;
+        int oldest = Integer.parseInt(testData.get("Oldest"));
         PersonImpl actualOldest = hi.getHighestAge(testp);
         System.out.println(actualOldest.getName() + " is the oldest\n");
         assertEquals(actualOldest.getAge(), oldest);
@@ -38,7 +42,7 @@ public class HandlerTest {
     @Test
     public void lowestAgeTest() {
         System.out.println("\n" + "Youngest test:");
-        int youngest = 10;
+        int youngest = Integer.parseInt(testData.get("Youngest"));
         PersonImpl actualYoungest = hi.getLowestAge(testp);
         System.out.println(actualYoungest.getName() + " is the youngest\n");
         assertEquals(actualYoungest.getAge(), youngest);
@@ -118,7 +122,7 @@ public class HandlerTest {
                 tempName = line.getName();
             }
         }
-        assertEquals(true,result);
+        assertEquals(true, result);
     }
 
     @Test
@@ -158,7 +162,6 @@ public class HandlerTest {
 //        System.out.println("//////////People ins: " + peopleIns.size() + " og  people: " + people.size());
 //        assertTrue(peopleDel.size() == people.size());
 //    }
-
     private boolean sameLetterHelper(String a, String b) {
 
         int lengthA = a.length();
@@ -179,4 +182,20 @@ public class HandlerTest {
         return true;
     }
 
+    private Map<String, String> generateTestData() {
+        Map<String, String> tData = new HashMap<String, String>();
+        tData.put("Not Empty", "1");
+        tData.put("Oldest", "160");
+        tData.put("Youngest", "10");
+        tData.put("Starting Letter1", "A");
+        tData.put("Starting Letter2", "U");
+        tData.put("Starting Letter3", "B");
+        tData.put("Starting Name1", "Ulla");
+        tData.put("Starting Name2", "Ulrik");
+        tData.put("Starting Name3", "Bethoven");
+        tData.put("Temp Age", "9999");
+        tData.put("Temp Name", "A");
+        tData.put("PeopleYounger", 20);
+        return tData;
+    }
 }
