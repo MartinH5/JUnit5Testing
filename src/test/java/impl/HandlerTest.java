@@ -195,7 +195,9 @@ public class HandlerTest {
         tData.put("Starting Name3", "Bethoven");
         tData.put("Temp Age", "9999");
         tData.put("Temp Name", "A");
-        tData.put("PeopleYounger", 20);
+        tData.put("PeopleYounger1", "20");
+        tData.put("PeopleYounger2", "40");
+        tData.put("PeopleYounger3", "60");
         return tData;
     }
 }
