@@ -51,10 +51,10 @@ public class HandlerTest {
     // Here we check if each person's name starts with U
     @Test
     public void nameStartingWithLetterTest() {
-        ArrayList<PersonImpl> testData = hi.getNameStartingWithLetter(testp, "U");
-        System.out.println("\n" + "letter with U in their name consists of: " + testData.size() + " persons");
+        ArrayList<PersonImpl> people = hi.getNameStartingWithLetter(testp, testData.get("Starting Letter1"));
+        System.out.println("\n" + "letter with starting letter in their name consists of: " + testData.size() + " persons");
         System.out.println("and they are:");
-        for (PersonImpl personImpl : testData) {
+        for (PersonImpl personImpl : people) {
             System.out.println(personImpl.getName());
             if (!personImpl.getName().substring(0, 1).equals("U")) {
                 fail("Found a letter that doesn't fit");
@@ -66,23 +66,23 @@ public class HandlerTest {
     //Here We check if we got a person by the right name. 
     @Test
     public void getByNameTest() {
-        ArrayList<PersonImpl> testData = hi.getByName(testp, "Ulla");
+        ArrayList<PersonImpl> people = hi.getByName(testp, testData.get("Starting Name1"));
         System.out.println("\n" + "We have : " + testData.size() + " with the same name");
         System.out.println("Who are:");
-        for (PersonImpl p : testData) {
+        for (PersonImpl p : people) {
             System.out.println(p.getName() + " " + p.getAge());
-            if (!p.getName().equals("Ulla")) {
+            if (!p.getName().equals(testData.get("Starting Name1"))) {
                 fail("Found a name that doesn't fit");
             }
         }
     }
 
     @Test
-    public void isMaleTest() {
+    public void genderTest() {
         System.out.println("\n" + "Gender test:");
-        PersonImpl testPerson = new PersonImpl("Hans", 15, "male");
-        assertEquals("male", testPerson.getGender());
-        System.out.println("Is it true, that Hans is a male? " + "\nAnswer: " + hi.isMale(testPerson));
+        PersonImpl testPerson = hi.getByName(testp, testData.get("Starting Name1")).get(0);
+        assertEquals(false, hi.isMale(testPerson));
+        System.out.println("Is it true, that our testperson is a female? " + "\nAnswer: " + hi.isMale(testPerson));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class HandlerTest {
         System.out.println("\nSorting the CSV by age:");
         ArrayList<PersonImpl> SortAge = hi.sortByAge(testp);
         boolean result = true;
-        int tempAge = 9999;
+        int tempAge = Integer.parseInt(testData.get("Temp Age"));
         for (PersonImpl line : SortAge) {
             //System.out.println(line);
             if (line.getAge() > tempAge) {
@@ -106,7 +106,7 @@ public class HandlerTest {
     public void sortByNameTest() {
         System.out.println("\n" + "Sorting the CSV by name:");
         ArrayList<PersonImpl> SortName = hi.sortByName(testp);
-        String tempName = "A";
+        String tempName = testData.get("Temp Name");
         boolean result = true;
         for (PersonImpl line : SortName) {
 //            System.out.println(line);
@@ -128,9 +128,10 @@ public class HandlerTest {
     @Test
     public void peopleYoungerThanTest() {
         System.out.println("\n" + "Get People younger than Test:");
-        ArrayList<PersonImpl> youngThan = hi.getPeopleYoungerThan(testp, 20);
+        int youngerThan = Integer.parseInt(testData.get("PeopleYounger1"));
+        ArrayList<PersonImpl> youngThan = hi.getPeopleYoungerThan(testp,youngerThan);
         for (PersonImpl line : youngThan) {
-            if (line.getAge() > 19) {
+            if (line.getAge() >= youngerThan) {
                 fail("Found someone who was too old");
             }
             System.out.println(line);

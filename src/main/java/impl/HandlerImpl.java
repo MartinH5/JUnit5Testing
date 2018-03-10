@@ -165,7 +165,7 @@ public class HandlerImpl implements Handler {
         }
     }
     
-    //IO skrives her, hvor den gemmer ArrayListe fra memory i .csv fil (overwrite)
+    //IO skrives her, hvor den gemmer ArrayListe fra memory i .csv fil (overwrite) Genbrug Insert Person, men I overwrite eventuelt. 
     @Override
     public boolean safeState(ArrayList<PersonImpl> persons, String fileName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
