@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class HandlerTestJunit5 {
@@ -21,6 +22,7 @@ public class HandlerTestJunit5 {
     }
 
     @Test
+    @DisplayName("ReadFileTest")
     public void readFileTest() throws IOException {
         System.out.println("\n" + "Read File test:");
         ArrayList<PersonImpl> people;
@@ -30,6 +32,7 @@ public class HandlerTestJunit5 {
     }
 
     @Test
+    @DisplayName("HighestAgeTest")
     public void highestAgeTest() {
         System.out.println("\n" + "Oldest test:");
         int oldest = 160;
