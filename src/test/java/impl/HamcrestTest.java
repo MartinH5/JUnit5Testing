@@ -26,7 +26,7 @@ public class HamcrestTest {
     }
 
     @Test
-    public void testThis() throws IOException {
+    public void testReadFile() throws IOException {
         ArrayList<PersonImpl> people;
         people = hi.readFile("persons.csv");
 
